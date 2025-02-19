@@ -39,6 +39,9 @@ public class Characteristics {
     private Integer common;
 
     @OneToOne
-    @JoinColumn(name = "player_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(
+            name = "player_id",
+            referencedColumnName = "id",
+            nullable = false)
     private Player player;
 }

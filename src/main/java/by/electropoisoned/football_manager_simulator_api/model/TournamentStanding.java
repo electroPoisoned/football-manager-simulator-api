@@ -6,10 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,43 +18,41 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
-@Table(name = "statistics")
-public class Statistics {
+@Table(name = "tournament_standings")
+public class TournamentStanding {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    @Min(0)
+    @ManyToOne
+    @JoinColumn(name = "tournament_id", nullable = false)
+    private Tournament tournament;
+
+    @ManyToOne
+    @JoinColumn(name = "team_id", nullable = false)
+    private Team team;
+
     @Column(nullable = false)
-    private Integer gamesPlayed;
+    private Integer played;
 
-    @Min(0)
     @Column(nullable = false)
-    private Integer goals;
+    private Integer wins;
 
-    @Min(0)
     @Column(nullable = false)
-    private Integer assists;
+    private Integer draws;
 
-    @Min(0)
     @Column(nullable = false)
-    private Integer cleanSheets;
+    private Integer losses;
 
-    @Min(0)
     @Column(nullable = false)
-    private Integer yellowCards;
+    private Integer goalsFor;
 
-    @Min(0)
     @Column(nullable = false)
-    private Integer redCards;
+    private Integer goalsAgainst;
 
-    @OneToOne
-    @JoinColumn(
-            name = "player_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private Player player;
-
+    @Column(nullable = false)
+    private Integer points;
 }

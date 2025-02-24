@@ -1,9 +1,13 @@
 package by.electropoisoned.football_manager_simulator_api.model;
 
+import by.electropoisoned.football_manager_simulator_api.model.enums.Country;
+import by.electropoisoned.football_manager_simulator_api.model.enums.Position;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,27 +38,30 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Column(nullable = false)
     private String name;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String position;
+    private Position position;
 
     @Column(nullable = false)
     private LocalDate birthDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String country;
+    private Country country;
 
     @OneToOne(
             mappedBy = "player",
             cascade = CascadeType.ALL)
-    private Characteristics characteristics;
+    private PlayerCharacteristics playerCharacteristics;
 
     @OneToOne(
             mappedBy = "player",
             cascade = CascadeType.ALL)
-    private Statistics statistics;
+    private PlayerStatistics playerStatistics;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")

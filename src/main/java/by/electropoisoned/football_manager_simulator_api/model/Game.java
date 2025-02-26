@@ -24,7 +24,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "matches")
+@Table(name = "games")
 public class Game {
 
     @Id
@@ -34,7 +34,8 @@ public class Game {
     @ManyToOne
     @JoinColumn(
             name = "home_team_id",
-            nullable = false)
+            nullable = false
+    )
     private Team homeTeam;
 
     @ManyToOne

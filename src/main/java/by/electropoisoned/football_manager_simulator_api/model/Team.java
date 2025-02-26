@@ -17,9 +17,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -44,6 +44,9 @@ public class Team {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Country country;
+
+    @Column(nullable = false)
+    private LocalDate foundationDate;
 
     @OneToMany(
             mappedBy = "team",

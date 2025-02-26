@@ -27,24 +27,28 @@ public class TournamentStatistics {
             joinColumns = @JoinColumn(name = "tournament_id")
     )
     private List<PlayerTournamentStatistics> topScorers;
+
     @ElementCollection
     @CollectionTable(
             name = "tournament_top_assistants",
             joinColumns = @JoinColumn(name = "tournament_id")
     )
     private List<PlayerTournamentStatistics> topAssistants;
+
     @ElementCollection
     @CollectionTable(
             name = "tournament_top_yellow_cards",
             joinColumns = @JoinColumn(name = "tournament_id")
     )
     private List<PlayerTournamentStatistics> topYellowCards;
+
     @ElementCollection
     @CollectionTable(
             name = "tournament_top_red_cards",
             joinColumns = @JoinColumn(name = "tournament_id")
     )
     private List<PlayerTournamentStatistics> topRedCards;
+
     @ElementCollection
     @CollectionTable(
             name = "tournament_top_clean_sheet_gk",

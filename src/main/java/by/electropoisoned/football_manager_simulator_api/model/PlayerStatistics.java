@@ -1,13 +1,7 @@
 package by.electropoisoned.football_manager_simulator_api.model;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,13 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "player_statistics")
+@Embeddable
 public class PlayerStatistics {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Min(0)
     @Column(nullable = false)
@@ -51,12 +40,4 @@ public class PlayerStatistics {
     @Min(0)
     @Column(nullable = false)
     private Integer redCards;
-
-    @OneToOne
-    @JoinColumn(
-            name = "player_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private Player player;
-
 }

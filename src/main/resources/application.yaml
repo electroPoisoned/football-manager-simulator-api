@@ -14,3 +14,7 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
+
+  server:
+    servlet:
+      context-path: /api

@@ -35,10 +35,10 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @Column(
             nullable = false,
-            unique = true)
+            unique = true
+    )
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -51,7 +51,8 @@ public class Team {
     @OneToMany(
             mappedBy = "team",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST)
+            cascade = CascadeType.PERSIST
+    )
     private List<Player> players;
 
 }

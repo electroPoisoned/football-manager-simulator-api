@@ -1,7 +1,6 @@
-package by.electropoisoned.football_manager_simulator_api.dto;
+package by.electropoisoned.football_manager_simulator_api.dto.team;
 
 import by.electropoisoned.football_manager_simulator_api.model.enums.Country;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,10 +14,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TeamDto {
-
-    @NotBlank
+public class TeamDTO {
     String name;
-    LocalDate foundationDate;
-    Country country;
+    String foundationDate;
+    String country;
 }

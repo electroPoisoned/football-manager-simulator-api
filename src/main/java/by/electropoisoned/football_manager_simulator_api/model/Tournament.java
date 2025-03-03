@@ -44,7 +44,7 @@ public class Tournament {
 
     @Min(0)
     @Column(nullable = false)
-    private Integer matchesPerEncounter;
+    private Integer gamesPerEncounter;
 
     @ManyToMany
     @JoinTable(
@@ -59,7 +59,7 @@ public class Tournament {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Game> games;
+    private List<Round> rounds;
 
     @OneToMany(
             mappedBy = "tournament",

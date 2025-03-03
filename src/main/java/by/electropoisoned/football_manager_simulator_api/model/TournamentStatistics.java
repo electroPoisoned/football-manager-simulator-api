@@ -23,7 +23,7 @@ public class TournamentStatistics {
 
     @ElementCollection
     @CollectionTable(
-            name = "tournament_top_assistants",
+            name = "tournament_top_scorers",
             joinColumns = @JoinColumn(name = "tournament_id")
     )
     private List<PlayerTournamentStatistics> topScorers;

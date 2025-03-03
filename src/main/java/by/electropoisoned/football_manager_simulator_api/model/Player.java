@@ -3,8 +3,8 @@ package by.electropoisoned.football_manager_simulator_api.model;
 import by.electropoisoned.football_manager_simulator_api.model.enums.Country;
 import by.electropoisoned.football_manager_simulator_api.model.enums.Position;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -51,10 +52,12 @@ public class Player {
     @Column(nullable = false)
     private Country country;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "characteristics_id")
     private PlayerCharacteristics playerCharacteristics;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "statistics_id")
     private PlayerStatistics playerStatistics;
 
     @ManyToOne(fetch = FetchType.LAZY)

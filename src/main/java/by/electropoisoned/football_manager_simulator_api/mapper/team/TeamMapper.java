@@ -6,7 +6,6 @@ import by.electropoisoned.football_manager_simulator_api.model.Team;
 import org.mapstruct.Mapper;
 
 @Mapper(
-        config = BaseMapper.class,
         componentModel = "spring"
 )
 public interface TeamMapper extends BaseMapper<Team, TeamDTO> {

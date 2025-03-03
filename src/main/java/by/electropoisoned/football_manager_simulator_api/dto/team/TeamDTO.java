@@ -16,6 +16,6 @@ import java.time.LocalDate;
 @Builder
 public class TeamDTO {
     String name;
-    String foundationDate;
-    String country;
+    LocalDate foundationDate;
+    Country country;
 }

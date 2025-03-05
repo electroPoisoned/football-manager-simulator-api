@@ -1,6 +1,6 @@
 package by.electropoisoned.football_manager_simulator_api.controller;
 
-import by.electropoisoned.football_manager_simulator_api.dto.player.PlayerDTO;
+import by.electropoisoned.football_manager_simulator_api.dto.PlayerDTO;
 import by.electropoisoned.football_manager_simulator_api.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +31,12 @@ public class PlayerController {
     public ResponseEntity<PlayerDTO> createPlayer(@RequestBody PlayerDTO playerDTO) {
         PlayerDTO createdPlayer = playerService.createPlayer(playerDTO);
         return new ResponseEntity<>(createdPlayer, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/new/batch")
+    public ResponseEntity<List<PlayerDTO>> createPlayers(@RequestBody List<PlayerDTO> playerDTOs) {
+        List<PlayerDTO> createdPlayers = playerService.createPlayers(playerDTOs);
+        return new ResponseEntity<>(createdPlayers, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

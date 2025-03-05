@@ -1,8 +1,8 @@
 package by.electropoisoned.football_manager_simulator_api.service.impl;
 
-import by.electropoisoned.football_manager_simulator_api.dto.team.TeamDTO;
+import by.electropoisoned.football_manager_simulator_api.dto.TeamDTO;
 import by.electropoisoned.football_manager_simulator_api.exception.TeamNotFoundException;
-import by.electropoisoned.football_manager_simulator_api.mapper.team.TeamMapper;
+import by.electropoisoned.football_manager_simulator_api.mapper.TeamMapper;
 import by.electropoisoned.football_manager_simulator_api.model.Team;
 import by.electropoisoned.football_manager_simulator_api.repository.TeamRepository;
 import by.electropoisoned.football_manager_simulator_api.service.TeamService;
@@ -27,13 +27,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public TeamDTO createTeam(TeamDTO teamDTO) {
         Team team = teamMapper.toEntity(teamDTO);
-//
-//        Team team = new Team();
-//
-//        team.setName(teamDTO.getName());
-//        team.setCountry(teamDTO.getCountry());
-//        team.setFoundationDate(teamDTO.getFoundationDate());
-//
+        System.out.println(team);
         Team savedTeam = teamRepository.save(team);
         return teamMapper.toDto(savedTeam);
     }

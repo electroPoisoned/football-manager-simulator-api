@@ -1,4 +1,4 @@
-package by.electropoisoned.football_manager_simulator_api.dto.team;
+package by.electropoisoned.football_manager_simulator_api.dto;
 
 import by.electropoisoned.football_manager_simulator_api.model.enums.Country;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package by.electropoisoned.football_manager_simulator_api.service;
 
-import by.electropoisoned.football_manager_simulator_api.dto.team.TeamDTO;
+import by.electropoisoned.football_manager_simulator_api.dto.TeamDTO;
 import java.util.List;
 
 public interface TeamService {

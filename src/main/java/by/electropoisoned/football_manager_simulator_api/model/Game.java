@@ -45,6 +45,6 @@ public class Game {
     private GameStatistics statistics;
 
     @ManyToOne
-    @JoinColumn(name = "round_id", nullable = false)
+    @JoinColumn(name = "round_id")
     private Round round;
 }

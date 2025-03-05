@@ -1,7 +1,5 @@
-package by.electropoisoned.football_manager_simulator_api.dto.player;
+package by.electropoisoned.football_manager_simulator_api.dto;
 
-import by.electropoisoned.football_manager_simulator_api.dto.player_characteristics.PlayerCharacteristicsDTO;
-import by.electropoisoned.football_manager_simulator_api.dto.player_statistics.PlayerStatisticsDTO;
 import by.electropoisoned.football_manager_simulator_api.model.enums.Country;
 import by.electropoisoned.football_manager_simulator_api.model.enums.Position;
 import lombok.AllArgsConstructor;
@@ -22,7 +20,5 @@ public class PlayerDTO {
     private Position position;
     private LocalDate birthDate;
     private Country country;
-    private PlayerCharacteristicsDTO playerCharacteristics;
-    private PlayerStatisticsDTO playerStatistics;
     private Long teamId;
 }

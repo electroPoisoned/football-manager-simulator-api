@@ -1,9 +1,11 @@
 package by.electropoisoned.football_manager_simulator_api.service.impl;
 
-import by.electropoisoned.football_manager_simulator_api.dto.player.PlayerDTO;
+import by.electropoisoned.football_manager_simulator_api.dto.PlayerDTO;
+import by.electropoisoned.football_manager_simulator_api.dto.PlayerStatisticsDTO;
 import by.electropoisoned.football_manager_simulator_api.exception.PlayerNotFoundException;
-import by.electropoisoned.football_manager_simulator_api.mapper.player.PlayerMapper;
+import by.electropoisoned.football_manager_simulator_api.mapper.PlayerMapper;
 import by.electropoisoned.football_manager_simulator_api.model.Player;
+import by.electropoisoned.football_manager_simulator_api.model.PlayerStatistics;
 import by.electropoisoned.football_manager_simulator_api.repository.PlayerRepository;
 import by.electropoisoned.football_manager_simulator_api.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,53 @@ public class PlayerServiceImpl implements PlayerService {
         existingPlayer.setCountry(playerDTO.getCountry());
         Player updatedPlayer = playerRepository.save(existingPlayer);
         return playerMapper.toDto(updatedPlayer);
+    }
+
+    @Override
+    public PlayerDTO updatePlayerStatistics(Long id, PlayerStatisticsDTO statisticsDTO) {
+        Player player = playerRepository.findById(id)
+                .orElseThrow(() -> new PlayerNotFoundException());
+
+        PlayerStatistics currentStatistics = player.getPlayerStatistics();
+
+        if (currentStatistics == null) {
+            player.setPlayerStatistics(
+                    PlayerStatistics.builder()
+                            .gamesPlayed(statisticsDTO.getGamesPlayed())
+                            .goals(statisticsDTO.getGoals())
+                            .assists(statisticsDTO.getAssists())
+                            .cleanSheets(statisticsDTO.getCleanSheets())
+                            .yellowCards(statisticsDTO.getYellowCards())
+                            .redCards(statisticsDTO.getRedCards())
+                            .build()
+            );
+        } else {
+            player.setPlayerStatistics(
+                    PlayerStatistics.builder()
+                            .gamesPlayed(currentStatistics.getGamesPlayed() + statisticsDTO.getGamesPlayed())
+                            .goals(currentStatistics.getGoals() + statisticsDTO.getGoals())
+                            .assists(currentStatistics.getAssists() + statisticsDTO.getAssists())
+                            .cleanSheets(currentStatistics.getCleanSheets() + statisticsDTO.getCleanSheets())
+                            .yellowCards(currentStatistics.getYellowCards() + statisticsDTO.getYellowCards())
+                            .redCards(currentStatistics.getRedCards() + statisticsDTO.getRedCards())
+                            .build()
+            );
+        }
+        Player updatedPlayer = playerRepository.save(player);
+        return playerMapper.toDto(updatedPlayer);
+    }
+
+    @Override
+    public List<PlayerDTO> createPlayers(List<PlayerDTO> playerDTOs) {
+        List<Player> players = playerDTOs.stream()
+                .map(playerMapper::toEntity)
+                .collect(Collectors.toList());
+
+        List<Player> savedPlayers = playerRepository.saveAll(players);
+
+        return savedPlayers.stream()
+                .map(playerMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override

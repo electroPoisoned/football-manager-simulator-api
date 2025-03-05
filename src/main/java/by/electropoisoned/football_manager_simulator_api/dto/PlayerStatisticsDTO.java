@@ -1,4 +1,4 @@
-package by.electropoisoned.football_manager_simulator_api.dto.player_statistics;
+package by.electropoisoned.football_manager_simulator_api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
